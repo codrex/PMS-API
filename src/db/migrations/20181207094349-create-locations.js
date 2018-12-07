@@ -24,14 +24,7 @@ module.exports = {
       allowNull: false,
       defaultValue: 0,
     },
-    parentLocation: {
-      type: Sequelize.STRING,
-      allowNull: true,
-      references: {
-        model: 'Locations',
-        key: 'id',
-      },
-    },
+
     childLocation: {
       type: Sequelize.STRING,
       allowNull: true,

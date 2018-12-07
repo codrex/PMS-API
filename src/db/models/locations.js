@@ -26,10 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 0,
       },
-      parentLocation: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
+
       childLocation: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -40,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
   Locations.associate = function association(models) {
     // associations can be defined here
     Locations.hasMany(models.Locations, { as: 'childLocations' });
-    Locations.belongsTo(models.Locations, { as: 'parentLocation' });
+    Locations.belongsTo(models.Locations);
   };
   return Locations;
 };
