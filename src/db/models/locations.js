@@ -1,3 +1,5 @@
+const { setTotalResidents } = require('../../lib/utils');
+
 module.exports = (sequelize, DataTypes) => {
   const Locations = sequelize.define(
     'Locations',
@@ -26,18 +28,27 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 0,
       },
-
-      childLocation: {
+      parentLocationId: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      childLocationId: {
         type: DataTypes.STRING,
         allowNull: true,
       },
     },
     {},
   );
+  Locations.beforeCreate(setTotalResidents);
+  Locations.beforeUpdate(setTotalResidents);
+
   Locations.associate = function association(models) {
     // associations can be defined here
-    Locations.hasMany(models.Locations, { as: 'childLocations' });
-    Locations.belongsTo(models.Locations);
+    Locations.hasMany(models.Locations, {
+      as: 'childrenLocations',
+      foreignKey: 'childLocationId',
+    });
+    Locations.belongsTo(models.Locations, { as: 'parentLocation' });
   };
   return Locations;
 };
