@@ -45,6 +45,13 @@ class Locations {
     return record;
   }
 
+  static async getAll(db) {
+    const record = await db.Locations.findAll({
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
+    return record;
+  }
+
   static async update(db, id, locationUpdate) {
     let location = await Locations.get(db, id);
     if (location) {

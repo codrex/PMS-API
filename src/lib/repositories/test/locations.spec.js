@@ -76,4 +76,22 @@ describe('Locations model repo', () => {
       expect(result).toEqual(0);
     });
   });
+
+  describe('getAll', () => {
+    it('should return all locations', async () => {
+      await Locations.create(db, createMockLocation());
+      await Locations.create(db, createMockLocation());
+      await Locations.create(db, createMockLocation());
+      await Locations.create(db, createMockLocation());
+      await Locations.create(db, createMockLocation());
+      await Locations.create(db, createMockLocation());
+      const records = await Locations.getAll(db);
+      expect(records.length).toBe(6);
+    });
+    it('should return an empty array', async () => {
+      const records = await Locations.getAll(db);
+      expect(records.length).toBe(0);
+      expect(records).toEqual([]);
+    });
+  });
 });
