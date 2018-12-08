@@ -15,7 +15,7 @@ describe('App', () => {
   afterEach(async () => {
     await server.close();
   });
-  describe('POST/ locations/location ', () => {
+  describe('POST/locations/location ', () => {
     it('should create location', async () => {
       const data = createMockLocation();
       delete data.parentLocation;
@@ -37,7 +37,7 @@ describe('App', () => {
     });
   });
 
-  describe('PATCH/ locations/:id ', () => {
+  describe('PATCH/locations/:id ', () => {
     it('should update location', async () => {
       const data = createMockLocation();
       delete data.parentLocation;
@@ -63,8 +63,8 @@ describe('App', () => {
     });
   });
 
-  describe('DELETE/ locations/:id ', () => {
-    it('should update location', async () => {
+  describe('DELETE/locations/:id ', () => {
+    it('should delete location', async () => {
       const data = createMockLocation();
       delete data.parentLocation;
       const { body } = await request(server)
@@ -84,8 +84,8 @@ describe('App', () => {
     });
   });
 
-  describe('GET/ locations/:id ', () => {
-    it('should update location', async () => {
+  describe('GET/locations/:id ', () => {
+    it('should get a location', async () => {
       const data = createMockLocation();
       delete data.parentLocation;
       const { body } = await request(server)
@@ -104,6 +104,29 @@ describe('App', () => {
       const res = await request(server).get('/api/v1/locations/iidjfjjff}');
       expect(res.status).toBe(NOT_FOUND);
       expect(res.body.error.message).toBe(NOT_FOUND_ERROR);
+    });
+  });
+
+  describe('GET/locations ', () => {
+    it('should update location', async () => {
+      const data = createMockLocation();
+      delete data.parentLocation;
+      await request(server)
+        .post('/api/v1/locations/location')
+        .send(data);
+      await request(server)
+        .post('/api/v1/locations/location')
+        .send(data);
+      const res = await request(server).get('/api/v1/locations');
+      expect(res.status).toBe(OK_CODE);
+      expect(res.body.success).toBe(true);
+      expect(res.body.data.length).toBe(2);
+      expect(
+        res.body.data.map((location) => {
+          delete location.id; // eslint-disable-line
+          return location;
+        }),
+      ).toMatchSnapshot();
     });
   });
 });

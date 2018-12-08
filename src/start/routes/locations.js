@@ -11,5 +11,6 @@ locations.post('/location', validateCreateLocation, LocationsController.create);
 locations.patch('/:id', validateUpdateLocation, LocationsController.update);
 locations.delete('/:id', LocationsController.delete);
 locations.get('/:id', LocationsController.get);
+locations.get('/', LocationsController.getAll);
 
 module.exports = locations;
