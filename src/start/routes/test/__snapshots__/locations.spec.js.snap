@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App GET/ locations/:id  should update location 1`] = `
+Object {
+  "data": Object {
+    "childrenLocations": Array [],
+    "createdAt": "",
+    "femaleResidents": 30,
+    "id": "",
+    "maleResidents": 30,
+    "name": "maryland lagos",
+    "parentLocation": null,
+    "totalResidents": 60,
+    "updatedAt": "",
+  },
+  "success": true,
+}
+`;
+
+exports[`App POST/ locations/location  should create location 1`] = `
+Object {
+  "data": Object {
+    "childLocationId": null,
+    "createdAt": "",
+    "femaleResidents": 30,
+    "id": "",
+    "maleResidents": 30,
+    "name": "maryland lagos",
+    "parentLocationId": null,
+    "totalResidents": 60,
+    "updatedAt": "",
+  },
+  "success": true,
+}
+`;
+
+exports[`App POST/ locations/location  should fail to create location 1`] = `
+Object {
+  "error": Array [
+    Object {
+      "name": "\\"name\\" is required",
+    },
+    Object {
+      "maleResidents": "\\"maleResidents\\" is required",
+    },
+    Object {
+      "femaleResidents": "\\"femaleResidents\\" is required",
+    },
+  ],
+  "success": false,
+}
+`;

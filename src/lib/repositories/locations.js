@@ -1,15 +1,19 @@
 const pushId = require('pushid');
 
 class Locations {
-  static parentLocation = db => ({
-    model: db.Locations,
-    as: 'parentLocation',
-  });
+  static parentLocation(db) {
+    return {
+      model: db.Locations,
+      as: 'parentLocation',
+    };
+  }
 
-  static childrenLocations = db => ({
-    model: db.Locations,
-    as: 'childrenLocations',
-  });
+  static childrenLocations(db) {
+    return {
+      model: db.Locations,
+      as: 'childrenLocations',
+    };
+  }
 
   static async _setParentLocation(db, parentLocationId, locationInstance) {
     if (parentLocationId) {
