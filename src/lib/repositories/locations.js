@@ -55,7 +55,7 @@ class Locations {
   }
 
   static async update(db, id, locationUpdate) {
-    let location = await Locations.get(db, id);
+    let location = await db.Locations.findById(id);
     if (location) {
       location = await location.update(locationUpdate, {
         fields: ['maleResidents', 'femaleResidents', 'name'],
