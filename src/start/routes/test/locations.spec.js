@@ -110,6 +110,7 @@ describe('App', () => {
 
   describe('GET/locations ', () => {
     it('should update location', async () => {
+      const { body: initial } = await request(server).get('/api/v1/locations');
       const data = createMockLocation();
       delete data.parentLocation;
       await request(server)
@@ -121,13 +122,7 @@ describe('App', () => {
       const res = await request(server).get('/api/v1/locations');
       expect(res.status).toBe(OK_CODE);
       expect(res.body.success).toBe(true);
-      expect(res.body.data.length).toBe(2);
-      expect(
-        res.body.data.map((location) => {
-          delete location.id; // eslint-disable-line
-          return location;
-        }),
-      ).toMatchSnapshot();
+      expect(res.body.data.length).toBe(2 + initial.data.length);
     });
   });
 });

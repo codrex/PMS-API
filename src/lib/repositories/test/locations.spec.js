@@ -80,6 +80,7 @@ describe('Locations model repo', () => {
 
   describe('getAll', () => {
     it('should return all locations', async () => {
+      const initialLocations = await Locations.getAll(db);
       await Locations.create(db, createMockLocation());
       await Locations.create(db, createMockLocation());
       await Locations.create(db, createMockLocation());
@@ -87,12 +88,12 @@ describe('Locations model repo', () => {
       await Locations.create(db, createMockLocation());
       await Locations.create(db, createMockLocation());
       const records = await Locations.getAll(db);
-      expect(records.length).toBe(6);
+      expect(records.length).toBe(6 + initialLocations.length);
     });
     it('should return an empty array', async () => {
+      const initialLocations = await Locations.getAll(db);
       const records = await Locations.getAll(db);
-      expect(records.length).toBe(0);
-      expect(records).toEqual([]);
+      expect(records.length).toBe(initialLocations.length);
     });
   });
 });

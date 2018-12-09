@@ -1,26 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App GET/locations  should update location 1`] = `
-Array [
-  Object {
-    "childLocationId": null,
-    "femaleResidents": 30,
-    "maleResidents": 30,
-    "name": "maryland lagos",
-    "parentLocationId": null,
-    "totalResidents": 60,
-  },
-  Object {
-    "childLocationId": null,
-    "femaleResidents": 30,
-    "maleResidents": 30,
-    "name": "maryland lagos",
-    "parentLocationId": null,
-    "totalResidents": 60,
-  },
-]
-`;
-
 exports[`App GET/locations/:id  should get a location 1`] = `
 Object {
   "data": Object {
