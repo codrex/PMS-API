@@ -32,6 +32,8 @@ module.exports = {
         model: 'Locations',
         key: 'id',
       },
+      onDelete: 'SET NULL',
+      onUpdate: 'NO ACTION',
     },
     childLocationId: {
       type: Sequelize.STRING,
@@ -40,6 +42,8 @@ module.exports = {
         model: 'Locations',
         key: 'id',
       },
+      onDelete: 'SET NULL',
+      onUpdate: 'NO ACTION',
     },
     createdAt: {
       allowNull: false,

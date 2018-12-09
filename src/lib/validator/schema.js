@@ -4,8 +4,7 @@ const name = joi.string().trim();
 const residents = joi
   .number()
   .positive()
-  .integer()
-  .required();
+  .integer();
 const locationId = joi.string().trim();
 const locationCreate = joi.object({
   name: name.required(),
