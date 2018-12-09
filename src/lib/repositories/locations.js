@@ -63,6 +63,14 @@ class Locations {
     return null;
   }
 
+  static async updateMany(db, update, whereClause = {}) {
+    const records = await db.Locations.update(update, {
+      where: whereClause,
+      returning: true,
+    });
+    return records;
+  }
+
   static async delete(db, id) {
     const result = await db.Locations.destroy({
       where: {

@@ -1,5 +1,6 @@
 const validator = require('../lib/validator');
 const { locationCreate, locationUpdate } = require('../lib/validator/schema');
+const updateParent = require('./updateParent');
 
 async function validateCreateLocation(ctx, next) {
   const data = ctx.request.body;
@@ -14,4 +15,5 @@ async function validateUpdateLocation(ctx, next) {
 module.exports = {
   validateCreateLocation,
   validateUpdateLocation,
+  updateParent,
 };

@@ -56,6 +56,7 @@ describe('Locations model repo', () => {
       const expectedRecord = await Locations.create(db, location);
       const record = await Locations.get(db, expectedRecord.id);
       expect(record.dataValues).toEqual(expectedRecord.dataValues);
+      expect(record.dataValues.childrenLocations).toEqual([]);
     });
     it('should return null when location is bot found', async () => {
       const record = await Locations.get(db, 'invalid id');
