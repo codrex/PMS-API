@@ -123,14 +123,6 @@ describe('App', () => {
       expect(res.status).toBe(OK_CODE);
       expect(res.body.success).toBe(true);
       expect(res.body.data.length).toBe(2 + initial.data.length);
-      expect(
-        res.body.data.map((location) => {
-          delete location.id; // eslint-disable-line
-          delete location.childLocationId; // eslint-disable-line
-          delete location.parentLocationId; // eslint-disable-line
-          return location;
-        }),
-      ).toMatchSnapshot();
     });
   });
 });
