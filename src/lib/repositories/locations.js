@@ -18,10 +18,12 @@ class Locations {
   static async _setParentLocation(db, parentLocationId, locationInstance) {
     if (parentLocationId) {
       const parent = await Locations.get(db, parentLocationId);
-      await parent.setChildrenLocations(locationInstance.id);
-      await locationInstance.setParentLocation(parentLocationId);
-      const record = await Locations.get(db, locationInstance.id);
-      return record;
+      if (parent) {
+        await parent.setChildrenLocations(locationInstance.id);
+        await locationInstance.setParentLocation(parentLocationId);
+        const record = await Locations.get(db, locationInstance.id);
+        return record;
+      }
     }
     return locationInstance;
   }

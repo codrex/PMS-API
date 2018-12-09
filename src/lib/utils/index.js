@@ -30,9 +30,12 @@ function buildMsg(data) {
 }
 
 function setTotalResidents(location) {
+  /* eslint-disable */
   const { femaleResidents, maleResidents } = location;
-  // eslint-disable-next-line
-  location.totalResidents = femaleResidents + maleResidents;
+  location.dataValues.femaleResidents = Number(femaleResidents);
+  location.dataValues.maleResidents = Number(maleResidents);
+  location.dataValues.totalResidents =
+    Number(femaleResidents) + Number(maleResidents);
   return location;
 }
 

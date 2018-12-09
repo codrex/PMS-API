@@ -12,7 +12,7 @@ const {
 
 const server = app.listen();
 describe('App', () => {
-  afterEach(async () => {
+  afterAll(async () => {
     await server.close();
   });
   describe('POST/locations/location ', () => {
@@ -28,6 +28,7 @@ describe('App', () => {
       expect(status).toBe(RESOURCE_CREATED_CODE);
       expect(body).toMatchSnapshot();
     });
+
     it('should fail to create location', async () => {
       const { body, status } = await request(server)
         .post('/api/v1/locations/location')

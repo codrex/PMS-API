@@ -31,10 +31,22 @@ module.exports = (sequelize, DataTypes) => {
       parentLocationId: {
         type: DataTypes.STRING,
         allowNull: true,
+        references: {
+          model: 'Locations',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'NO ACTION',
       },
       childLocationId: {
         type: DataTypes.STRING,
         allowNull: true,
+        references: {
+          model: 'Locations',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'NO ACTION',
       },
     },
     {},
