@@ -8,6 +8,7 @@ const {
   RESOURCE_DELETED,
   NOT_FOUND,
   NOT_FOUND_ERROR,
+  ROUTE_NOT_FOUND,
 } = require('../../../constants');
 
 const server = app.listen();
@@ -123,6 +124,14 @@ describe('App', () => {
       expect(res.status).toBe(OK_CODE);
       expect(res.body.success).toBe(true);
       expect(res.body.data.length).toBe(2 + initial.data.length);
+    });
+  });
+  describe('Not Found ', () => {
+    it('should return not found', async () => {
+      const res = await request(server).get('/api/v1/location/run/run');
+      expect(res.status).toBe(NOT_FOUND);
+      expect(res.body.success).toBe(false);
+      expect(res.body.error).toBe(ROUTE_NOT_FOUND);
     });
   });
 });
