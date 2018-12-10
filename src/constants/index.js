@@ -18,6 +18,7 @@ const SERVER_ERROR = 'Server error occurred';
 const UNIQUE_CONSTRAINT_ERR = 'SequelizeUniqueConstraintError';
 const RESOURCE_DELETED = 'Resource deleted';
 const PARENT_LOC_NOT_FOUND = 'Parent location does not exist';
+const ROUTE_NOT_FOUND = 'Route does not exist';
 
 module.exports = {
   PORT,
@@ -34,5 +35,6 @@ module.exports = {
   RESOURCE_DELETED,
   RESOURCE_CREATED_CODE,
   PARENT_LOC_NOT_FOUND,
+  ROUTE_NOT_FOUND,
   ...mock,
 };
