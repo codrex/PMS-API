@@ -1,6 +1,6 @@
 const Locations = require('../lib/repositories/locations');
-const { sendFailure, sendServerError } = require('../lib/utils');
-const { NOT_FOUND, PARENT_LOC_NOT_FOUND } = require('../constants');
+const { ErrorHandler } = require('../lib/utils');
+const { PARENT_LOC_NOT_FOUND } = require('../constants');
 
 async function checkParentId(ctx, next) {
   try {
@@ -9,12 +9,12 @@ async function checkParentId(ctx, next) {
     if (parentLocation) {
       const parent = await Locations.get(db, parentLocation);
       if (!parent) {
-        return sendFailure(ctx, PARENT_LOC_NOT_FOUND, NOT_FOUND);
+        return ErrorHandler.ResourceNotFoundError(PARENT_LOC_NOT_FOUND);
       }
     }
     await next();
   } catch (error) {
-    sendServerError(ctx);
+    return ErrorHandler.ServerError();
   }
 }
 

@@ -1,15 +1,14 @@
 const joi = require('joi');
-const { SERVER_ERROR } = require('../../constants');
-const utils = require('../../lib/utils');
+const { ErrorHandler } = require('../../lib/utils');
 
 const ABORT_EARLY = false;
 
 function validateSchema(schema) {
   if (!schema.isJoi) {
-    throw new Error(SERVER_ERROR);
+    ErrorHandler.ServerError();
   }
 }
-async function validator(schema, data, ctx, next) {
+async function validator(schema, data, next) {
   try {
     validateSchema(schema);
     await joi.validate(data, schema, { abortEarly: ABORT_EARLY });
@@ -22,9 +21,9 @@ async function validator(schema, data, ctx, next) {
       const errors = details.map(({ path, message }) => ({
         [path]: message,
       }));
-      utils.sendFailure(ctx, errors);
+      ErrorHandler.BadRequestError(errors);
     } else {
-      utils.sendServerError(ctx);
+      throw error;
     }
   }
 }

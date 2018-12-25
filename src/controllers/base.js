@@ -1,15 +1,9 @@
 const pushid = require('pushid');
 
-const {
-  sendFailure,
-  sendSuccess,
-  buildMsg,
-  sendServerError,
-} = require('../lib/utils');
+const { buildMsg, ErrorHandler, sendSuccess } = require('../lib/utils');
 const {
   RESOURCE_CREATED_CODE,
   OK_CODE,
-  NOT_FOUND,
   NOT_FOUND_ERROR,
   RESOURCE_DELETED,
 } = require('../constants');
@@ -30,7 +24,7 @@ class BaseController {
     if (record) {
       sendSuccess(ctx, record, OK_CODE);
     } else {
-      sendFailure(ctx, buildMsg(NOT_FOUND_ERROR), NOT_FOUND);
+      ErrorHandler.ResourceNotFoundError(buildMsg(NOT_FOUND_ERROR));
     }
   }
 
@@ -42,7 +36,7 @@ class BaseController {
     if (deleteCount) {
       sendSuccess(ctx, buildMsg(RESOURCE_DELETED), OK_CODE);
     } else {
-      sendFailure(ctx, buildMsg(NOT_FOUND_ERROR), NOT_FOUND);
+      ErrorHandler.ResourceNotFoundError(buildMsg(NOT_FOUND_ERROR));
     }
   }
 
@@ -55,15 +49,7 @@ class BaseController {
     if (record) {
       sendSuccess(ctx, record, OK_CODE);
     } else {
-      sendFailure(ctx, buildMsg(NOT_FOUND_ERROR), NOT_FOUND);
-    }
-  }
-
-  static async call(func, ctx, ...args) {
-    try {
-      await func(ctx, ...args);
-    } catch (error) {
-      await sendServerError(ctx);
+      ErrorHandler.ResourceNotFoundError(buildMsg(NOT_FOUND_ERROR));
     }
   }
 }

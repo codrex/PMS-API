@@ -5,23 +5,23 @@ const { OK_CODE } = require('../constants');
 
 class LocationsController extends BaseController {
   static async create(ctx) {
-    await super.call(super.create, ctx, Locations);
+    await super.create(ctx, Locations);
   }
 
   static async get(ctx) {
-    await super.call(super.get, ctx, Locations);
-  }
-
-  static async getAll(ctx) {
-    await super.call(LocationsController._getAll, ctx);
+    await super.get(ctx, Locations);
   }
 
   static async delete(ctx) {
-    await super.call(super.delete, ctx, Locations);
+    await super.delete(ctx, Locations);
   }
 
   static async update(ctx) {
-    await super.call(super.update, ctx, Locations);
+    await super.update(ctx, Locations);
+  }
+
+  static async getAll(ctx) {
+    await LocationsController._getAll(ctx);
   }
 
   static async _getAll(ctx) {

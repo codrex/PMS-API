@@ -4,6 +4,7 @@ const {
   OK_CODE,
   BAD_REQUEST_CODE,
 } = require('../../constants');
+const ErrorHandler = require('./errorHandler');
 
 function sendSuccess(ctx, data, statusCode = OK_CODE) {
   ctx.status = statusCode;
@@ -45,4 +46,5 @@ module.exports = {
   sendFailure,
   sendSuccess,
   buildMsg,
+  ErrorHandler,
 };
