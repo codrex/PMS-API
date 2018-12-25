@@ -14,6 +14,7 @@ class ErrorHandler extends Error {
     }
     this.message = message;
     this.statusCode = statusCode;
+    this.isCustom = true;
   }
 
   static ServerError() {

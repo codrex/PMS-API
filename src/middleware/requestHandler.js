@@ -8,7 +8,7 @@ function requestHandler(routes) {
     try {
       await routes(ctx, next);
     } catch (error) {
-      if (error instanceof utils.ErrorHandler) {
+      if (error instanceof utils.ErrorHandler || error.isCustom) {
         utils.sendFailure(ctx, error.message, error.statusCode);
       } else {
         utils.sendServerError(ctx);
